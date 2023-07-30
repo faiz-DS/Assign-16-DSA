@@ -1,0 +1,25 @@
+def reverse_number(number):
+    num_str = str(number)
+    stack = []
+
+    # Step 1: Push each digit into the stack
+    for digit in num_str:
+        stack.append(digit)
+
+    reversed_num_str = ""
+
+    # Step 2 & 3: Pop digits from the stack and construct the reversed number
+    while stack:
+        reversed_num_str += stack.pop()
+
+    # Convert the reversed number string back to an integer
+    reversed_num = int(reversed_num_str)
+
+    return reversed_num
+
+# Test cases
+number1 = 365
+number2 = 6899
+
+print(reverse_number(number1))  # Output: 563
+print(reverse_number(number2))  # Output: 9986

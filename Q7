@@ -1,0 +1,17 @@
+def pairwise_destruction(words):
+    stack = []
+
+    for word in words:
+        if stack and stack[-1] == word:
+            stack.pop()
+        else:
+            stack.append(word)
+
+    return len(stack)
+
+# Test cases
+sequence1 = ["ab", "aa", "aa", "bcd", "ab"]
+sequence2 = ["tom", "jerry", "jerry", "tom"]
+
+print(pairwise_destruction(sequence1))  # Output: 3
+print(pairwise_destruction(sequence2))  # Output: 0

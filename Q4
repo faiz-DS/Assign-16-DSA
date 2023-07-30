@@ -1,0 +1,26 @@
+def can_be_arranged_increasing_order(queue):
+    stack = []
+    target_queue = []
+    
+    n = len(queue)
+    
+    for i in range(n, 0, -1):
+        if queue[0] == i:
+            target_queue.append(queue.pop(0))
+        elif stack and stack[-1] == i:
+            target_queue.append(stack.pop())
+        else:
+            while queue and queue[0] != i:
+                stack.append(queue.pop(0))
+            if not queue:
+                return False
+            target_queue.append(queue.pop(0))
+    
+    return True
+
+# Test cases
+queue1 = [5, 1, 2, 3, 4]
+queue2 = [5, 1, 2, 6, 3, 4]
+
+print(can_be_arranged_increasing_order(queue1))  # Output: Yes
+print(can_be_arranged_increasing_order(queue2))  # Output: No

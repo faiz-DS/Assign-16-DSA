@@ -1,0 +1,45 @@
+class QueueWithReverse:
+    def __init__(self):
+        self.queue = []
+
+    def enqueue(self, item):
+        self.queue.append(item)
+
+    def dequeue(self):
+        if not self.is_empty():
+            return self.queue.pop(0)
+
+    def size(self):
+        return len(self.queue)
+
+    def front(self):
+        if not self.is_empty():
+            return self.queue[0]
+
+    def is_empty(self):
+        return len(self.queue) == 0
+
+    def reverse_first_k_elements(self, k):
+        if k <= 0 or k > self.size():
+            return
+
+        stack = []
+        for _ in range(k):
+            stack.append(self.dequeue())
+
+        while stack:
+            self.enqueue(stack.pop())
+
+# Test
+queue = QueueWithReverse()
+queue.enqueue(1)
+queue.enqueue(2)
+queue.enqueue(3)
+queue.enqueue(4)
+queue.enqueue(5)
+
+print("Original Queue:", queue.queue)  # Output: Original Queue: [1, 2, 3, 4, 5]
+
+k = 3
+queue.reverse_first_k_elements(k)
+print("Reversed First", k, "Elements:", queue.queue)  # Output: Reversed First 3 Elements: [3, 2, 1, 4, 5]
